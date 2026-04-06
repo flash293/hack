@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo Terminal</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      color: lime;
+      font-family: monospace;
+      padding: 20px;
+    }
+    #terminal {
+      white-space: pre-line;
+      font-size: 1.2em;
+      text-shadow: 0 0 10px lime;
+    }
+    video {
+      display: none;
+      margin-top: 20px;
+      max-width: 80%;
+      border: 2px solid lime;
+      box-shadow: 0 0 20px lime;
+    }
+  </style>
+</head>
+<body>
+  <div id="terminal"></div>
+  <video id="vid" controls>
+    <source src="demo.mp4" type="video/mp4">
+    Tarayıcınız video oynatmayı desteklemiyor.
+  </video>
+
+  <script>
+    const lines = [
+      "Virüs yükleniyor.....",
+      "Ev konumu tespit ediliyor.....",
+      "6666-77777  ((((((:",
+      "Video başlatılıyor..."
+    ];
+
+    let i = 0;
+    const terminal = document.getElementById("terminal");
+    const video = document.getElementById("vid");
+
+    function showLine() {
+      if (i < lines.length) {
+        terminal.innerHTML += lines[i] + "\n";
+        i++;
+        setTimeout(showLine, 2000); // 2 saniye aralıklarla yazılsın
+      } else {
+        video.style.display = "block";
+        video.play();
+      }
+    }
+
+    // Tam ekran denemesi
+    window.onload = () => {
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+      }
+      showLine();
+    };
+  </script>
+</body>
+</html>
+
+
